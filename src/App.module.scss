@@ -1,0 +1,11 @@
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.bar {
+  flex: 1;
+  background: black;
+}

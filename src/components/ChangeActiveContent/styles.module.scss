@@ -1,0 +1,21 @@
+.changeActiveContent {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  .item {
+    transition: background 1s, transform 1s ease-out;
+    transform: translateY(-50px);
+  }
+  :first-child {
+    transform: translateY(0px);
+  }
+  .slideDown {
+    transform: translateY(0);
+  }
+  .slideContentsLeft {
+    transform: translateX(-105px);
+  }
+  .slideOtherContentsUp {
+    transform: translateX(-105px) translateY(-50px);
+  }
+}

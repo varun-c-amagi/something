@@ -1,0 +1,13 @@
+.chip {
+  width: 100px;
+  height: 30px;
+  background: grey;
+  color: white;
+  padding: 5px 20px;
+  margin: 5px 0 5px 5px;
+  transition: background 1s;
+}
+
+.active {
+  background: #007bff;
+}

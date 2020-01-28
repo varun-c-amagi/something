@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import './styles.scss';
-import { ChangeActiveContent } from './components/ChangeActiveContent';
+import React, { useState } from 'react';
+
+import styles from './App.module.scss';
+import { ChangeActiveContent } from './components/ChangeActiveContent/ChangeActiveContent';
+import useTimeout from './hooks/useTimeout';
+import { ExpandActiveContentStrip } from './components/ExpandActiveContentStrip/ExpandActiveContentStrip';
 
 const content = [
   'LOTTERY',
@@ -12,39 +15,38 @@ const content = [
 ];
 
 const steps = [
-  'change-active-content',
-  'slide-contents-left',
-  'slide-non-active-contents-up',
-  'expand-contents-data-strip',
-  'start-sliding-content-data-up',
-  'slide-contents-down',
+  { name: 'change-active-content', time: 10000 },
+  { name: 'expand-contents-data-strip', time: 10000 },
+  // { name: 'start-sliding-content-data-up' },
+  // { name: 'slide-contents-down' },
 ];
 
 function getCurrentComp(currentStep: number) {
   switch (currentStep) {
     case 0:
-      return <ChangeActiveContent content={content}></ChangeActiveContent>;
-
+      return <ChangeActiveContent content={content} />;
+    case 1:
+      return <ExpandActiveContentStrip activeContent={content[1]} />;
     default:
       return null;
   }
 }
 
-const App: React.FC = () => {
+function useCurrentStep() {
   const [currentStep, setCurrentStep] = useState(0);
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setCurrentStep(prevState => {
-  //       return (prevState + 1) % steps.length;
-  //     });
-  //   }, 3000);
-  //   return () => {
-  //     clearTimeout(timeout);
-  //   };
-  // }, []);
+  useTimeout(() => {
+    setCurrentStep(prevStep => (prevStep + 1) % steps.length);
+  }, steps[currentStep].time);
+  return currentStep;
+}
+
+const App: React.FC = () => {
+  const currentStep = useCurrentStep();
   return (
-    <div className="App">
-      <div className="bar">{getCurrentComp(currentStep)}</div>
+    <div className={styles.container}>
+      <div className={styles.bar}>
+        <div className="bar">{getCurrentComp(currentStep)}</div>
+      </div>
     </div>
   );
 };
