@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./styles.css";
+import { ChangeActiveContent } from "./components/ChangeActiveContent";
+
+const content = [
+  "LOTTERY",
+  "FINANCE",
+  "HEADLINES",
+  "SPORTS",
+  "MTA ALERTS",
+  "WEATHER"
+];
+
+const steps = [
+  "change-active-content",
+  "slide-contents-left",
+  "slide-non-active-contents-up",
+  "expand-contents-data-strip",
+  "start-sliding-content-data-up",
+  "slide-contents-down"
+];
+
+function getCurrentComp(currentStep: number) {
+  switch (currentStep) {
+    case 0:
+      return <ChangeActiveContent content={content}></ChangeActiveContent>;
+
+    default:
+      return null;
+  }
+}
 
 const App: React.FC = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setCurrentStep(prevState => {
+  //       return (prevState + 1) % steps.length;
+  //     });
+  //   }, 3000);
+  //   return () => {
+  //     clearTimeout(timeout);
+  //   };
+  // }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="bar">{getCurrentComp(currentStep)}</div>
     </div>
   );
-}
+};
 
 export default App;
