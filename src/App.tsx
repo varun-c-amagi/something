@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import "./styles.css";
-import { ChangeActiveContent } from "./components/ChangeActiveContent";
+import React, { useEffect, useState } from 'react';
+import './styles.scss';
+import { ChangeActiveContent } from './components/ChangeActiveContent';
 
 const content = [
-  "LOTTERY",
-  "FINANCE",
-  "HEADLINES",
-  "SPORTS",
-  "MTA ALERTS",
-  "WEATHER"
+  'LOTTERY',
+  'FINANCE',
+  'HEADLINES',
+  'SPORTS',
+  'MTA ALERTS',
+  'WEATHER',
 ];
 
 const steps = [
-  "change-active-content",
-  "slide-contents-left",
-  "slide-non-active-contents-up",
-  "expand-contents-data-strip",
-  "start-sliding-content-data-up",
-  "slide-contents-down"
+  'change-active-content',
+  'slide-contents-left',
+  'slide-non-active-contents-up',
+  'expand-contents-data-strip',
+  'start-sliding-content-data-up',
+  'slide-contents-down',
 ];
 
 function getCurrentComp(currentStep: number) {
