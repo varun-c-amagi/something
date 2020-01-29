@@ -22,10 +22,10 @@ const steps = [
 ];
 
 function getCurrentComp(currentStep: number) {
-  switch (currentStep) {
-    case 0:
+  switch (steps[currentStep].name) {
+    case 'change-active-content':
       return <ChangeActiveContent content={content} />;
-    case 1:
+    case 'expand-contents-data-strip':
       return <ExpandActiveContentStrip activeContent={content[1]} />;
     default:
       return null;
@@ -33,7 +33,7 @@ function getCurrentComp(currentStep: number) {
 }
 
 function useCurrentStep() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(1);
   useTimeout(() => {
     setCurrentStep(prevStep => (prevStep + 1) % steps.length);
   }, steps[currentStep].time);

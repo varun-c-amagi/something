@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.emptyStrip {
+  background: grey;
+  transition: width 2s;
+  margin-left: 10px;
+  width: 0;
+  height: 30px;
+  margin: 5px 0 5px 5px;
+}
+
+.expandEmptyStrip {
+  width: 100%;
+}

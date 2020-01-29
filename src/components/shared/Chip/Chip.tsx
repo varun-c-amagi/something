@@ -1,10 +1,10 @@
-import React, { FC, HTMLAttributes } from 'react';
+import React, { FC } from 'react';
 import clsx from 'clsx';
 
 import styles from './Chip.module.scss';
 
 interface Props {
-  className: string;
+  className?: string;
   active?: boolean;
 }
 
